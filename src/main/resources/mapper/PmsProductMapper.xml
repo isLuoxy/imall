@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 指明当前xml对应的Mapper -->
+<mapper namespace="com.luo.imall.web.dao.PmsProductDao">
+
+    <!-- 查找商品详情 -->
+    <select id="findProductById" parameterType="Long" resultType="com.luo.imall.web.entity.PmsProduct">
+        select b.id ,a.name, brand_id ,brand_name, new_status, recommand_status, sale ,price, sub_title,stock,unit,weight,service_ids,detail_title,description,product_attribute_id,
+        product_attribute_value,product_attribute_name
+        from pms_product a ,pms_product_attribute_value b where a.id = b.product_id and a.id = #{id};
+    </select>
+
+</mapper>

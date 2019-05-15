@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 指明当前xml对应的Mapper -->
+<mapper namespace="com.luo.imall.web.dao.UmsMemberDao">
+
+    <!--根据用户名获取用户对象-->
+    <select id="findByName" parameterType="String" resultType="com.luo.imall.web.entity.UmsMember">
+        select * from ums_member where username = #{name};
+    </select>
+
+    <!--根据用户名和密码获取用户对象-->
+    <select id="findByNameAndPassword" parameterType="String" resultType="com.luo.imall.web.entity.UmsMember">
+        select * from ums_member where username = #{username} and password = #{password};
+    </select>
+
+    <!-- 新增会员 -->
+    <insert id="addMember" parameterType="com.luo.imall.web.entity.UmsMember">
+      insert into ums_member(username,password,create_time) values(#{username},#{password},#{createTime});
+    </insert>
+</mapper>

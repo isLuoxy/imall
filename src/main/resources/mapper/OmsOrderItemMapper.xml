@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 指明当前xml对应的Mapper -->
+<mapper namespace="com.luo.imall.web.dao.OmsCartItemDao">
+
+
+<insert id="addOmsOrderItem" parameterType="com.luo.imall.web.entity.OmsOrderItem">
+    insert into oms_order_item (order_id,order_sn,product_id,product_pic,product_name,product_brand,product_sn,product_price,product_quantity,product_sku_id,product_sku_code,product_category_id,promotion_name,promotion_amount, coupon_amount,integration_amount,real_amount,gift_integration,gift_growth,product_attr)
+    values(#{orderId},#{orderSn},#{productId},#{productPic},#{productName},#{productBrand},#{productSn},#{productPrice},#{productQuantity},#{productSkuId},#{productSkuCode},#{productCategoryId},#{promotionName},#{promotionAmount},#{couponAmount},#{integrationAmount},#{realAmount},#{giftIntegration},#{giftGrowth},#{productAttr});
+</insert>
+
+</mapper>

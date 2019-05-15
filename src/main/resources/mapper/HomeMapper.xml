@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 指明当前xml对应的Mapper -->
+<mapper namespace="com.luo.imall.web.dao.HomeDao">
+
+    <!-- 获取推荐商品列表 根据排序降序-->
+    <select id="getRecommendProductList" parameterType="com.luo.imall.web.entity.Page" resultType="com.luo.imall.web.entity.BriefProduct">
+        select * from pms_product where recommand_status = 1 order by sort desc limit  #{pageStart},#{pageSize};
+    </select>
+
+    <!--获取新品列表 根据排序降序-->
+    <select id="getNewProductList" parameterType="com.luo.imall.web.entity.Page" resultType="com.luo.imall.web.entity.BriefProduct">
+        select * from pms_product where new_status = 1 order by sort desc limit #{pageStart},#{pageSize};
+    </select>
+</mapper>

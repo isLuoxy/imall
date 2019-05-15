@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/loginTest" method="post">
+    <input id="returnUrl" type="hidden" name="returnUrl"/>
+    账号：<input id="username" name="username" type="text"/>
+    密码：<input id="password" name="password" type="password"/>
+    <input id="submit" name="submit" type="submit" value="提交"/>
+</form>
+
+<script type="text/javascript">
+    var currentHref = window.location.href;
+    var q = currentHref.split('?');
+    if (q.length != 1) {
+        //    说明切割
+        var temp = q[1].split('=');
+        document.getElementById("returnUrl").setAttribute("value", temp[1]);
+    }
+</script>
+</body>
+</html>

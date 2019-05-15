@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 指明当前xml对应的Mapper -->
+<mapper namespace="com.luo.imall.web.dao.OmsOrderDao">
+
+    <insert id="addOrder" parameterType="com.luo.imall.web.entity.OmsOrder">
+        insert into oms_order(member_id,order_sn,create_time,member_username,total_amount,pay_amout,pay_type,status,order_type,growth,receiver_name,receiver_phone,receiver_province,receiver_city,receiver_region,receiver_detail_address,note)
+        values(memberId,orderSn,createTime,memberUsername,totalAmount,payAmout,payType,status,orderType,growth,receiverName,receiverPhone,receiverProvince,receiverCity,receiverRegion,receiverDetailAdress,note);
+    </insert>
+
+
+</mapper>
