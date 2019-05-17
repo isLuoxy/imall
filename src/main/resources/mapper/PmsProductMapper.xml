@@ -4,11 +4,52 @@
 <!-- 指明当前xml对应的Mapper -->
 <mapper namespace="com.luo.imall.web.dao.PmsProductDao">
 
+    <resultMap id="BaseResultMap" type="com.luo.imall.web.entity.PmsProduct">
+        <id column="productId" property="id" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="brand_id" jdbcType="BIGINT" property="brandId" />
+        <result column="brand_name" jdbcType="VARCHAR" property="brandName" />
+        <result column="product_sn" jdbcType="VARCHAR" property="productSn" />
+        <result column="publish_status" jdbcType="INTEGER" property="publishStatus" />
+        <result column="new_status" jdbcType="INTEGER" property="newStatus" />
+        <result column="recommand_status" jdbcType="INTEGER" property="recommandStatus" />
+        <result column="sort" jdbcType="INTEGER" property="sort" />
+        <result column="sale" jdbcType="INTEGER" property="sale" />
+        <result column="sub_title" jdbcType="VARCHAR" property="subTitle" />
+        <result column="unit" jdbcType="VARCHAR" property="unit" />
+        <result column="weight" jdbcType="DECIMAL" property="weight" />
+        <result column="service_ids" jdbcType="VARCHAR" property="serviceIds" />
+        <collection property="pmsProductAttibuteValue" javaType="ArrayList" ofType="com.luo.imall.web.entity.PmsProductAttibuteValue">
+            <id column="id" property="id" />
+            <result column="productId" property="productId" />
+            <result column="product_attribute_id" property="productAttributeId" />
+            <result column="product_attribute_name" property="productAttributeName" />
+            <result column="product_attribute_value" property="productAttributeValue" />
+            <result column="price" property="price" />
+            <result column="stock" property="stock" />
+        </collection>
+    </resultMap>
+
     <!-- 查找商品详情 -->
-    <select id="findProductById" parameterType="Long" resultType="com.luo.imall.web.entity.PmsProduct">
-        select b.id ,a.name, brand_id ,brand_name, new_status, recommand_status, sale ,price, sub_title,stock,unit,weight,service_ids,detail_title,description,product_attribute_id,
+    <select id="findProductById" parameterType="Long" resultMap="BaseResultMap">
+        select a.id as productId, b.id ,a.name, brand_id ,brand_name, new_status, recommand_status, sale ,price, sub_title,stock,unit,weight,service_ids,detail_title,description,product_attribute_id,
         product_attribute_value,product_attribute_name
         from pms_product a ,pms_product_attribute_value b where a.id = b.product_id and a.id = #{id};
+    </select>
+
+    <!--通过关键字模糊查询商品-->
+    <select id="keywordsFuzzyQuery" parameterType="String" resultType="com.luo.imall.web.entity.PmsProduct">
+        select * from pms_product where name like #{keyWord};
+    </select>
+    
+    <!--通过关键字精确查询商品-->
+    <select id="keywordsAccurateQuery" parameterType="String" resultType="com.luo.imall.web.entity.PmsProduct">
+        select * from pms_product where name == #{keyWord};
+    </select>
+
+    <!--通过关键字模糊查询商品,并按区间-->
+    <select id="queryProductByInterval" resultType="com.luo.imall.web.entity.PmsProduct">
+        select id,price,name,sub_title from pms_product a,pms_product_attribute_value b where name like #{good} and a.id = b.product_id and price between #{lowerBoundary} and #{upperBoundary};
     </select>
 
 </mapper>

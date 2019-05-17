@@ -19,10 +19,10 @@ public class WebConfig implements WebMvcConfigurer {
     @Autowired
     LoginInterceptor loginInterceptor;
 
-//    @Override
-//    public void addInterceptors(InterceptorRegistry registry) {
-//        System.out.println("进入拦截器");
-//        registry.addInterceptor(loginInterceptor).addPathPatterns("/**").excludePathPatterns("/login","/html/login.html","/loginTest","/html/index.html");
-//    }
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        System.out.println("进入拦截器");
+        registry.addInterceptor(loginInterceptor).addPathPatterns("/cart/**");
+    }
 
 }

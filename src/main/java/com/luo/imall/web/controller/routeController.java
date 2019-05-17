@@ -38,14 +38,14 @@ public class routeController {
     @GetMapping("/test")
     public String test() {
         log.info("进入test方法");
-        return "test";
+        return "Test";
     }
 
     @GetMapping("/json")
     @ResponseBody
     public void json(HttpServletRequest request, HttpServletResponse response) throws Exception {
         log.info("进入 json 方法");
-        request.getRequestDispatcher("/test").forward(request, response);
+        request.getRequestDispatcher("/Test").forward(request, response);
     }
 
 

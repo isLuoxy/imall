@@ -1,15 +1,13 @@
 package com.luo.imall.web.handler;
 
-import com.luo.imall.web.constant.TokenConstant;
-import com.luo.imall.web.util.CookieUtil;
+
+import com.luo.imall.web.util.TokenGenerator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
-
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.concurrent.TimeUnit;
@@ -32,21 +30,28 @@ public class LoginInterceptor implements HandlerInterceptor {
 
         log.info("======== 进入拦截器 pre ============");
         log.info(request.getRequestURI());
-        Cookie token = CookieUtil.get(request, TokenConstant.TOKEN);
-        if (token != null) {
-            //如果一小时内有响应，则延长登陆状态
-            if (stringRedisTemplate.getExpire(token.getValue(), TimeUnit.SECONDS) < 3600) {
-                stringRedisTemplate.expire(token.getValue(), TokenConstant.TOKEN_EXPIRE_TIME, TimeUnit.SECONDS);
-                token.setMaxAge(TokenConstant.TOKEN_EXPIRE_TIME);
-                response.addCookie(token);
-            }
-            return true;
-        } else {
-            StringBuffer requestURL = request.getRequestURL();
-            String rerutnUrl = requestURL.toString();
-            String redirectUrl = request.getContextPath() + "/login?ReturnUrl=" + rerutnUrl;
-            response.sendRedirect(redirectUrl);
-            return false;
+
+        String token = request.getParameter("token");
+        String timestamp = request.getParameter("timestamp");
+        String sign = request.getParameter("sign");
+        String name = stringRedisTemplate.opsForValue().get(token);
+        boolean time = System.currentTimeMillis() - Long.parseLong(timestamp) < 3600000;
+        if ( name != null &&  time && verifySignature(sign,token,timestamp,token) && stringRedisTemplate.opsForSet().add(timestamp, sign) == 1) {
+            stringRedisTemplate.expire(timestamp, 3600, TimeUnit.SECONDS);
+            request.setAttribute("authentication",true);
+            request.setAttribute("name",name);
         }
+
+        return true;
+    }
+
+    /**
+     * 判断当前签名是否被修改过
+     * @param sign 签名
+     * @param strings 生成签名的字符串，token+timestamp+salt
+     * @return
+     */
+    private boolean verifySignature(String sign,String ... strings){
+        return sign.equalsIgnoreCase(TokenGenerator.tokenGenerator32(false,strings));
     }
 }

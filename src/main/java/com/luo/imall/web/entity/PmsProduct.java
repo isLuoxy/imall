@@ -50,23 +50,12 @@ public class PmsProduct {
      */
     private Integer sale;
 
-    /**
-     * 价格
-     */
-    private BigDecimal price;
-
 
     /**
      * 副标题
      */
     private String subTitle;
 
-
-    /**
-     * 库存
-     *
-     */
-    private Integer stock;
 
 
     /**
@@ -107,22 +96,8 @@ public class PmsProduct {
 
 
     /**
-     * 商品规格id总字符串 ｛1,2,3｝
+     *
      */
-    private String productAttributeId;
+    private List<PmsProductAttibuteValue> pmsProductAttibuteValue;
 
-    /**
-     * 商品规格名称总字符串 ｛颜色、容量｝
-     */
-    private String productAttributeName;
-
-    /**
-     * 商品规格值总字符串 ｛黄色、16G｝
-     */
-    private String productAttributeValue;
-
-    /**
-     * 商品规格属性
-     */
-    private List<PmsProductSpecifications> attributes;
 }

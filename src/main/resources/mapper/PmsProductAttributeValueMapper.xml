@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 指明当前xml对应的Mapper -->
+<mapper namespace="com.luo.imall.web.dao.PmsProductAttibuteValueDao">
+
+    <update id="UpdatePmsPgetPmsProductAttributeValue" parameterType="com.luo.imall.web.entity.PmsProductAttibuteValue">
+
+    </update>
+
+    <update id="inventoryReduction" parameterType="com.luo.imall.web.entity.PmsProductAttibuteValue">
+        update pms_product_attribute_value set stock = (stock-#{difference}) where id = #{id};
+    </update>
+
+</mapper>

@@ -1,6 +1,7 @@
 package com.luo.imall.web.service;
 
 import com.luo.imall.web.vo.CommonResult;
+import com.luo.imall.web.vo.CreateOmsOrderRequest;
 
 /**
  * 订单管理自定义Service
@@ -8,7 +9,11 @@ import com.luo.imall.web.vo.CommonResult;
  * @createDate 2019/5/15
  *
  */
-public class IOmsOrderService {
+public interface IOmsOrderService {
 
-    // CommonResult addOrder();
+    /**
+     * 新增订单
+     * @return
+     */
+    CommonResult addOmsOrder(CreateOmsOrderRequest createOmsOrderRequest) throws Exception;
 }

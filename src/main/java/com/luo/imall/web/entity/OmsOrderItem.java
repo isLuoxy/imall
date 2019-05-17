@@ -33,6 +33,9 @@ public class OmsOrderItem {
      */
     private String orderSn;
 
+    /**
+     * 这里的 商品id 是 具体商品 sku 中的 id，而不是 商品表中的id
+     */
     private Long productId;
 
     private String productPic;

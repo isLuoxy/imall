@@ -28,4 +28,11 @@ public interface OmsCartItemDao {
      * @return
      */
     boolean addCart(OmsCartItem omsCartItem);
+
+    /**
+     * 根据用户名称获取购物车
+     * @param name
+     * @return
+     */
+    List<OmsCartItem> getCartByName(String name);
 }

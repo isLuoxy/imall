@@ -24,4 +24,11 @@ public interface IOmsCartItemService {
      * @return {@link CommonResult}
      */
     CommonResult addCart(CreateOmsCartItemRequest omsCartItemRequest);
+
+    /**
+     * 根据名称获取购物车
+     * @param name
+     * @return
+     */
+    CommonResult getCartByName(String name);
 }

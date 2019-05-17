@@ -33,9 +33,15 @@ public class OmsCartItemServiceImpl implements IOmsCartItemService {
     @Override
     public CommonResult addCart(CreateOmsCartItemRequest omsCartItemRequest) {
         boolean result = cartItemDao.addCart(omsCartItemRequest.toCartItem());
-        if(result){
-           return CommonResult.success();
+        if (result) {
+            return CommonResult.success();
         }
-        return CommonResult.failure(ErrorCode.ADD_CART_FAILED.getCode(),ErrorCode.ADD_CART_FAILED.getDesc());
+        return CommonResult.failure(ErrorCode.ADD_CART_FAILED.getCode(), ErrorCode.ADD_CART_FAILED.getDesc());
+    }
+
+    @Override
+    public CommonResult getCartByName(String name) {
+        List<OmsCartItem> cartByName = cartItemDao.getCartByName(name);
+        return new CommonResult(cartByName);
     }
 }

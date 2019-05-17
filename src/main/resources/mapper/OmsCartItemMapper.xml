@@ -7,4 +7,8 @@
    <select id="getCart" parameterType="com.luo.imall.web.entity.OmsCartItem" resultType="com.luo.imall.web.entity.OmsCartItem">
        select * from oms_cart_item where member_id = #{memberid};
    </select>
+
+    <select id="getCartByName" parameterType="String" resultType="com.luo.imall.web.entity.OmsCartItem">
+       select * from oms_cart_item where member_id in (select id from ums_member where username = #{name});
+    </select>
 </mapper>

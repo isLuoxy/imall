@@ -15,7 +15,7 @@ public interface OmsOrderDao {
     /**
      * 新增订单基本信息
      * @param omsOrder
-     * @return
+     * @return 返回插入数据后自增的 id 值
      */
-    boolean addOrder(OmsOrder omsOrder);
+    Long addOrder(OmsOrder omsOrder);
 }
