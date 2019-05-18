@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 指明当前xml对应的Mapper -->
+<mapper namespace="com.luo.imall.web.dao.PmsProductClassificationDao">
+
+    <resultMap id="BaseResultMap" type="com.luo.imall.web.entity.BriefClassification">
+        <id column="parentId" jdbcType="BIGINT" property="id" />
+        <result column="parentName" jdbcType="VARCHAR" property="name" />
+        <collection property="lowerClassification" ofType="com.luo.imall.web.entity.BriefClassification">
+            <id column="id" property="id" />
+            <result column="name" property="name" />
+        </collection>
+    </resultMap>
+<select id="selectAllClassification" resultMap="BaseResultMap">
+    select a.id as parentId,a.name as parentName,b.id as id,b.name as name from  pms_product_category a , pms_product_category b where a.id = b.parent_id;
+</select>
+</mapper>

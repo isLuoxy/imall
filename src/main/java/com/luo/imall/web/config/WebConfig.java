@@ -22,7 +22,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         System.out.println("进入拦截器");
-        registry.addInterceptor(loginInterceptor).addPathPatterns("/cart/**");
+        registry.addInterceptor(loginInterceptor).addPathPatterns("/cart/**","/order/**");
     }
 
 }

@@ -1,18 +1,40 @@
 spring:
-  datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/imall?useSSL=false
-    username: root
-    password: root
-    type: com.alibaba.druid.pool.DruidDataSource
   mvc:
     view:
       prefix: /html/
       suffix: .html
-  redis:
-    port: 6379
-    host: 127.0.0.1
+  profiles:
+    active: dev
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   configuration:
     map-underscore-to-camel-case: true
+
+---
+# 开发环境配置文件
+spring:
+  profiles: dev
+  redis:
+      port: 6379
+      host: 127.0.0.1
+  datasource:
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/imall?useSSL=false
+      username: root
+      password: root
+      type: com.alibaba.druid.pool.DruidDataSource
+
+---
+
+# 生产环境配置文件
+spring:
+  profiles: pro
+  datasource:
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/imall?useSSL=false
+      username: root
+      password: root
+      type: com.alibaba.druid.pool.DruidDataSource
+  redis:
+        port: 6379
+        host: 127.0.0.1

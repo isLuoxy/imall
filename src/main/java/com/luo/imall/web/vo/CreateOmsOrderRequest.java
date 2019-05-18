@@ -4,6 +4,7 @@ import com.google.common.annotations.VisibleForTesting;
 import com.luo.imall.web.dao.OmsOrderItemDao;
 import com.luo.imall.web.entity.OmsOrder;
 import com.luo.imall.web.entity.OmsOrderItem;
+import com.luo.imall.web.util.IdGenerate;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -119,7 +120,7 @@ public class CreateOmsOrderRequest {
 
         omsOrder.setMemberId(memberId);
         omsOrder.setMemberUsername(memberUsername);
-        omsOrder.setOrderSn(UUID.randomUUID().toString());
+        omsOrder.setOrderSn(String.valueOf(IdGenerate.nextId()));
         omsOrder.setCreateTime(new Date());
         omsOrder.setTotalAmount(totalAmount);
         omsOrder.setPayAmount(payAmount);

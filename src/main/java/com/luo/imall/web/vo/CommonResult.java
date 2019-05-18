@@ -48,6 +48,7 @@ public class CommonResult {
      * @return
      */
     public static CommonResult failure(Integer code,String errorMessage) {
+        
         return new CommonResult(code, errorMessage, null);
     }
 

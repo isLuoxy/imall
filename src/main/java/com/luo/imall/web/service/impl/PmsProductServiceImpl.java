@@ -51,4 +51,10 @@ public class PmsProductServiceImpl implements IPmsProductService {
         List<PmsProduct> products = pmsProductDao.queryProductByInterval(pmsProductRequest.getProductName(), Integer.valueOf(pmsProductRequest.getLowerBoundary()), Integer.valueOf(pmsProductRequest.getUpperBoundary()));
         return new CommonResult(products);
     }
+
+    @Override
+    public CommonResult findProductByClassificationId(Long id) {
+        List<PmsProduct> productByClassificationList = pmsProductDao.findProductByClassificationId(id);
+        return new CommonResult(productByClassificationList);
+    }
 }

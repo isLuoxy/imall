@@ -1,6 +1,5 @@
 package com.luo.imall.web.entity;
 
-import com.luo.imall.web.entity.FlashPromotionProduct;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -1,7 +1,9 @@
 package com.luo.imall.web;
 
 import com.luo.imall.web.dao.HomeDao;
+import com.luo.imall.web.dao.PmsProductClassificationDao;
 import com.luo.imall.web.dao.PmsProductDao;
+import com.luo.imall.web.entity.BriefClassification;
 import com.luo.imall.web.entity.PmsProduct;
 import com.luo.imall.web.service.IHomeService;
 import com.luo.imall.web.util.TokenGenerator;
@@ -107,7 +109,7 @@ public class ImallWebApplicationTests {
 
     @Test
     public void token() {
-        String token = "270af368-d545-4285-99d3-c2c928e39899";
+        String token = "cdd33739-aed7-456a-a2d4-4adeb5efeeda";
         String timestamp = String.valueOf(System.currentTimeMillis());
         String sign = TokenGenerator.tokenGenerator32(false, token, timestamp, token);
 
@@ -127,9 +129,23 @@ public class ImallWebApplicationTests {
     @Autowired
     StringRedisTemplate stringRedisTemplate;
 
+    @Autowired
+    PmsProductClassificationDao pmsProductClassificationDao;
     @Test
     public void redisTest(){
-       boolean result = stringRedisTemplate.opsForSet().add(String.valueOf(System.currentTimeMillis()),"123") == 1;
-        System.out.println(result);
+        List<BriefClassification> briefClassifications = pmsProductClassificationDao.selectAllClassification();
+        System.out.println(JSONArray.fromObject(briefClassifications).toString());
     }
+
+    /**
+     * {@link PmsProductDao}
+     * @see PmsProductDao#findProductByClassificationId(Long)
+     */
+    @Test
+    public void findProductByClassificationIdTest(){
+        List<PmsProduct> productByClassificationId = pmsProductDao.findProductByClassificationId(7l);
+        System.out.println(JSONArray.fromObject(productByClassificationId).toString());
+    }
+
+
 }

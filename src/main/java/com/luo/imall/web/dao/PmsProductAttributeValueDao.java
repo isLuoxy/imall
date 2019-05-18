@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
  *
  */
 @Repository
-public interface PmsProductAttibuteValueDao {
+public interface PmsProductAttributeValueDao {
 
     /**
      * 更新商品 sku 的属性

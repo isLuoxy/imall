@@ -4,6 +4,74 @@
 <!-- 指明当前xml对应的Mapper -->
 <mapper namespace="com.luo.imall.web.dao.OmsOrderDao">
 
+
+    <resultMap id="BaseResultMap" type="com.luo.imall.web.entity.OmsOrder">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="member_id" jdbcType="BIGINT" property="memberId" />
+        <result column="coupons_id" jdbcType="BIGINT" property="couponsId" />
+        <result column="order_sn" jdbcType="VARCHAR" property="orderSn" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="member_username" jdbcType="VARCHAR" property="memberUsername" />
+        <result column="total_amount" jdbcType="DECIMAL" property="totalAmount" />
+        <result column="pay_amount" jdbcType="DECIMAL" property="payAmount" />
+        <result column="pay_type" jdbcType="INTEGER" property="payType" />
+        <result column="status" jdbcType="INTEGER" property="status" />
+        <result column="order_type" jdbcType="INTEGER" property="orderType" />
+        <result column="growth" jdbcType="INTEGER" property="growth" />
+        <result column="delivery_time" jdbcType="TIMESTAMP" property="deliveryTime" />
+        <result column="pay_time" jdbcType="TIMESTAMP" property="payTime" />
+        <result column="receiver_time" jdbcType="TIMESTAMP" property="receiverTime" />
+        <result column="freight_amount" jdbcType="DECIMAL" property="freightAmount" />
+        <result column="promotion_amount" jdbcType="DECIMAL" property="promotionAmount" />
+        <result column="integration_amount" jdbcType="DECIMAL" property="integrationAmount" />
+        <result column="coupon_amount" jdbcType="DECIMAL" property="couponAmount" />
+        <result column="discount_amount" jdbcType="DECIMAL" property="discountAmount" />
+        <result column="delivery_company" jdbcType="VARCHAR" property="deliveryCompany" />
+        <result column="delivery_sn" jdbcType="VARCHAR" property="deliverySn" />
+        <result column="auto_confirm_day" jdbcType="INTEGER" property="autoConfirmDay" />
+        <result column="integration" jdbcType="INTEGER" property="integration" />
+        <result column="receiver_name" jdbcType="VARCHAR" property="receiverName" />
+        <result column="receiver_phone" jdbcType="VARCHAR" property="receiverPhone" />
+        <result column="receiver_province" jdbcType="VARCHAR" property="receiverProvince" />
+        <result column="receiver_city" jdbcType="VARCHAR" property="receiverCity" />
+        <result column="receiver_region" jdbcType="VARCHAR" property="receiverRegion" />
+        <result column="receiver_detail_address" jdbcType="VARCHAR" property="receiverDetailAddress" />
+        <result column="note" jdbcType="VARCHAR" property="note" />
+        <collection property="product" ofType="com.luo.imall.web.entity.BriefOrderItem">
+            <result column="product_sn" property="productSn"/>
+            <result column="product_name" property="name" />
+            <result column="product_price" property="price" />
+            <result column="product_quantity" property="quantity" />
+        </collection>
+    </resultMap>
+
+    <resultMap id="BriefResultMap" type="com.luo.imall.web.entity.BriefOrder">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="member_id" jdbcType="BIGINT" property="memberId" />
+        <result column="order_sn" jdbcType="VARCHAR" property="orderSn" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="member_username" jdbcType="VARCHAR" property="memberUsername" />
+        <result column="total_amount" jdbcType="DECIMAL" property="totalAmount" />
+        <result column="status" jdbcType="INTEGER" property="status" />
+        <result column="delivery_company" jdbcType="VARCHAR" property="deliveryCompany" />
+        <result column="delivery_sn" jdbcType="VARCHAR" property="deliverySn" />
+        <result column="receiver_name" jdbcType="VARCHAR" property="receiverName" />
+        <result column="receiver_phone" jdbcType="VARCHAR" property="receiverPhone" />
+        <result column="receiver_province" jdbcType="VARCHAR" property="receiverProvince" />
+        <result column="receiver_city" jdbcType="VARCHAR" property="receiverCity" />
+        <result column="receiver_region" jdbcType="VARCHAR" property="receiverRegion" />
+        <result column="receiver_detail_address" jdbcType="VARCHAR" property="receiverDetailAddress" />
+        <collection property="product" ofType="com.luo.imall.web.entity.BriefOrderItem">
+            <result column="product_sn" property="productSn"/>
+            <result column="product_name" property="name" />
+            <result column="product_price" property="price" />
+            <result column="product_quantity" property="quantity" />
+        </collection>
+    </resultMap>
+
+
+
+    <!-- 添加订单 -->
     <insert id="addOrder" parameterType="com.luo.imall.web.entity.OmsOrder">
         insert into oms_order(member_id,order_sn,create_time,member_username,total_amount,pay_amount,pay_type,status,order_type,growth,receiver_name,receiver_phone,receiver_province,receiver_city,receiver_region,receiver_detail_address,note)
         values(#{memberId},#{orderSn},#{createTime},#{memberUsername},#{totalAmount},#{payAmount},#{payType},#{status},#{orderType},#{growth},#{receiverName},#{receiverPhone},#{receiverProvince},#{receiverCity},#{receiverRegion},#{receiverDetailAddress},#{note});
@@ -12,5 +80,14 @@
         </selectKey>
     </insert>
 
+    <!-- 根据用户名获取某个用户的全部订单 -->
+    <select id="getAllOrder" parameterType="String" resultMap="BriefResultMap">
+       select a.id ,a.member_id,a.order_sn,b.product_sn,b.product_price,b.product_quantity,b.product_name,a.create_time,a.member_username,a.total_amount,a.status,a.delivery_company,a.delivery_sn,a.receiver_name,a.receiver_phone,a.receiver_province,a.receiver_city,a.receiver_region,a.receiver_detail_address
+      from oms_order a,oms_order_item b where a.member_username = #{name} and a.id = b.order_id;
+    </select>
 
+    <!-- 根据订单id 返回订单详细信息 -->
+    <select id="getOrderDetailsById" parameterType="Long" resultMap="BaseResultMap">
+        select a.*,b.product_sn,b.product_price,b.product_quantity,b.product_name from oms_order a,oms_order_item b where a.id = b.order_id and a.id = #{id};
+    </select>
 </mapper>

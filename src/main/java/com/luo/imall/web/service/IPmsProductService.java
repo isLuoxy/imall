@@ -39,4 +39,11 @@ public interface IPmsProductService {
      * @return
      */
     CommonResult queryProductByInterval(CreatePmsProductRequest pmsProductRequest);
+
+    /**
+     * 通过分类 id 查找商品
+     * @param id
+     * @return {@link CommonResult}
+     */
+    CommonResult findProductByClassificationId(Long id);
 }

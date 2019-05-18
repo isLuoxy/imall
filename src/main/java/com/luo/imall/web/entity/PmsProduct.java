@@ -96,7 +96,7 @@ public class PmsProduct {
 
 
     /**
-     *
+     * 具体商品规格
      */
     private List<PmsProductAttibuteValue> pmsProductAttibuteValue;
 

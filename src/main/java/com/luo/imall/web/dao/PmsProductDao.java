@@ -48,5 +48,9 @@ public interface PmsProductDao {
     List<PmsProduct> queryProductByInterval(@Param("good") String good,@Param("lowerBoundary") Integer lowerBoundary, @Param("upperBoundary") Integer upperBoundary);
 
 
-
+    /**
+     * 通过分类 id 查找商品详情
+     * @param id
+     */
+    List<PmsProduct> findProductByClassificationId(Long id);
 }

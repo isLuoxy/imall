@@ -31,7 +31,7 @@ public enum ErrorCode {
 
     PRODUCT_DOES_NOT_EXIST(5,"该商品不存在"),
 
-    ABNORMAL_STATUE(6,"暂未登陆，请重新登陆；如已登陆，则可能存在风险问题");
+    ABNORMAL_STATUE(6,"暂未登陆，请登陆；如已登陆，则可能存在风险问题");
 
     /** 错误码 */
     private Integer code;

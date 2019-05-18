@@ -24,6 +24,11 @@ public class OmsCartItemController {
     @Autowired
     IOmsCartItemService cartItemService;
 
+    /**
+     * 通过用户名查看购物车
+     * @param request
+     * @return
+     */
     @GetMapping("/cart")
     public Object getCart(HttpServletRequest request) {
         // 查看当前 鉴权情况
