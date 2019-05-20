@@ -1,5 +1,7 @@
 package com.luo.imall.web.constant;
 
+import org.apache.ibatis.annotations.Update;
+
 /**
  * 错误码枚举定义
  * @author L99
@@ -25,13 +27,20 @@ public enum ErrorCode {
     /**
      * 账户名与密码不匹配
      */
-    NOT_MATCH(3,"账户名与密码不匹配，请重新输入"),
+    NOT_MATCH(3, "账户名与密码不匹配，请重新输入"),
 
-    ADD_CART_FAILED(4,"添加购物车失败"),
+    ADD_CART_FAILED(4, "添加购物车失败"),
 
-    PRODUCT_DOES_NOT_EXIST(5,"该商品不存在"),
+    PRODUCT_DOES_NOT_EXIST(5, "该商品不存在"),
 
-    ABNORMAL_STATUE(6,"暂未登陆，请登陆；如已登陆，则可能存在风险问题");
+    ABNORMAL_STATUE(6, "暂未登陆，请登陆；如已登陆，则可能存在风险问题"),
+
+
+    INVENTORY_NOT_ENOUGH(7, "库存不够"),
+
+    UPDATE_CART_FAILED(8, "更新购物车失败");
+
+
 
     /** 错误码 */
     private Integer code;

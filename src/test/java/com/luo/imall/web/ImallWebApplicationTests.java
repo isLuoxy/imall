@@ -12,7 +12,6 @@ import com.luo.imall.web.vo.CreateOmsOrderRequest;
 import com.luo.imall.web.vo.HomeContentResult;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,11 +48,11 @@ public class ImallWebApplicationTests {
 
     @Test
     public void test() {
-        List<PmsProduct> product = pmsProductDao.findProductById(27L);
+        List<PmsProduct> product = pmsProductDao.findProductBySn(27L);
 
 //        for (PmsProduct p : product) {
-//            String productAttributeName = p.getPmsProductAttibuteValue();
-//            String productAttributeValue = p.getPmsProductAttibuteValue().getProductAttributeValue();
+//            String productAttributeName = p.getPmsProductAttributeValue();
+//            String productAttributeValue = p.getPmsProductAttributeValue().getProductAttributeValue();
 //
 //            String[] names = productAttributeName.split(",");
 //            String[] values = productAttributeValue.split(",");
@@ -67,7 +66,7 @@ public class ImallWebApplicationTests {
         CreateOmsOrderRequest createOmsOrderRequest = new CreateOmsOrderRequest();
         CreateOmsOrderItemRequest itemRequest = new CreateOmsOrderItemRequest();
 
-        itemRequest.setProductId(1l);
+        itemRequest.setProductId(11l);
         itemRequest.setProductName("iphone 7");
         itemRequest.setProductPrice(new BigDecimal(4000));
         itemRequest.setProductQuantity(2);
@@ -109,7 +108,7 @@ public class ImallWebApplicationTests {
 
     @Test
     public void token() {
-        String token = "cdd33739-aed7-456a-a2d4-4adeb5efeeda";
+        String token = "0f806013-4e0a-4016-815f-7ea068b4ce74";
         String timestamp = String.valueOf(System.currentTimeMillis());
         String sign = TokenGenerator.tokenGenerator32(false, token, timestamp, token);
 

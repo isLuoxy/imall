@@ -6,16 +6,14 @@ import com.luo.imall.web.dao.PmsProductAttributeValueDao;
 import com.luo.imall.web.entity.BriefOrder;
 import com.luo.imall.web.entity.OmsOrder;
 import com.luo.imall.web.entity.OmsOrderItem;
-import com.luo.imall.web.entity.PmsProductAttibuteValue;
+import com.luo.imall.web.entity.PmsProductAttributeValue;
 import com.luo.imall.web.service.IOmsOrderService;
-import com.luo.imall.web.util.TimeUtil;
 import com.luo.imall.web.vo.CommonResult;
 import com.luo.imall.web.vo.CreateOmsOrderRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -60,11 +58,13 @@ public class OmsOrderServiceImpl implements IOmsOrderService {
             // 添加 订单详情
             omsOrderItemDao.addOmsOrderItem(orderItem);
 
-            PmsProductAttibuteValue pmsProductAttibuteValue = new PmsProductAttibuteValue();
+            PmsProductAttributeValue pmsProductAttributeValue = new PmsProductAttributeValue();
             // 获取订单中购买的商品对应的 sku id
-            pmsProductAttibuteValue.setId(orderItem.getProductId());
+            pmsProductAttributeValue.setId(orderItem.getProductId());
             // 获取订单中商品数量，对应库存减少多少数量
-            pmsProductAttributeValueDao.inventoryReduction(pmsProductAttibuteValue);
+            pmsProductAttributeValue.setDifference(orderItem.getProductQuantity());
+
+            pmsProductAttributeValueDao.inventoryReduction(pmsProductAttributeValue);
         });
         // 下订单减库存，对应商品的库存量减少
 

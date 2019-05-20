@@ -20,10 +20,19 @@ public class OmsCartItem {
 
     private Long id;
 
+    /**
+     * 商品 id
+     */
     private Long productId;
 
-    private Long productSkuId;
+    /**
+     * 商品 sku 编码
+     */
+    private Long productSn;
 
+    /**
+     * 用户 id
+     */
     private Long memberId;
 
     /**
@@ -63,13 +72,6 @@ public class OmsCartItem {
     private String productSubTitle;
 
     /**
-     * 商品sku条码
-     *
-     * @mbggenerated
-     */
-    private String productSkuCode;
-
-    /**
      * 会员昵称
      *
      * @mbggenerated
@@ -98,19 +100,13 @@ public class OmsCartItem {
     private Integer deleteStatus;
 
     /**
-     * 商品分类
-     *
-     * @mbggenerated
+     * 商品品牌
      */
-    private Long productCategoryId;
-
     private String productBrand;
 
-    private String productSn;
 
     /**
-     * 商品销售属性:[{"key":"颜色","value":"颜色"},{"key":"容量","value":"4G"}]
-     *
+     * 商品销售属性:{"key":"value"}
      */
-    private String productAttr;
+    private String productAttributeValue;
 }

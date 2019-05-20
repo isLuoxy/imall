@@ -1,14 +1,12 @@
 package com.luo.imall.web.vo;
 
-import com.google.common.annotations.VisibleForTesting;
-import com.luo.imall.web.dao.OmsOrderItemDao;
+
 import com.luo.imall.web.entity.OmsOrder;
 import com.luo.imall.web.entity.OmsOrderItem;
 import com.luo.imall.web.util.IdGenerate;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 import java.math.BigDecimal;
 import java.util.*;
@@ -23,9 +21,6 @@ import java.util.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CreateOmsOrderRequest {
-
-    /** 订单 id */
-    private Long id;
 
     /** 会员 id */
     private Long memberId;
@@ -113,7 +108,11 @@ public class CreateOmsOrderRequest {
      */
     private String note;
 
+    /**
+     * 订单中商品详情
+     */
     private List<CreateOmsOrderItemRequest> createOmsOrderItemRequests;
+
 
     public OmsOrder toOmsOrder() {
         OmsOrder omsOrder = new OmsOrder();
@@ -151,6 +150,7 @@ public class CreateOmsOrderRequest {
         createOmsOrderItemRequests.stream().forEach((order) -> {
             OmsOrderItem omsOrderItem = new OmsOrderItem();
             omsOrderItem.setOrderId(omsOrder.getId());
+            // 获取订单表中的订单号
             omsOrderItem.setOrderSn(omsOrder.getOrderSn());
             omsOrderItem.setProductId(order.getProductId());
             omsOrderItem.setProductName(order.getProductName());

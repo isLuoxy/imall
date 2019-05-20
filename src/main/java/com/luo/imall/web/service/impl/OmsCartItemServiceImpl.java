@@ -23,6 +23,7 @@ public class OmsCartItemServiceImpl implements IOmsCartItemService {
     @Autowired
     OmsCartItemDao cartItemDao;
 
+
     @Override
     public CommonResult getCart(CreateOmsCartItemRequest omsCartItemRequest) {
         List<OmsCartItem> omsCartItems = cartItemDao.getCart(omsCartItemRequest.toCartItem());
@@ -43,5 +44,15 @@ public class OmsCartItemServiceImpl implements IOmsCartItemService {
     public CommonResult getCartByName(String name) {
         List<OmsCartItem> cartByName = cartItemDao.getCartByName(name);
         return new CommonResult(cartByName);
+    }
+
+    @Override
+    public CommonResult updateCart(CreateOmsCartItemRequest omsCartItemRequest) {
+
+        boolean result = cartItemDao.UpdateCart(omsCartItemRequest.update2CartItem());
+        if (result) {
+            return CommonResult.success();
+        }
+        return CommonResult.failure(ErrorCode.UPDATE_CART_FAILED.getCode(),ErrorCode.UPDATE_CART_FAILED.getDesc());
     }
 }

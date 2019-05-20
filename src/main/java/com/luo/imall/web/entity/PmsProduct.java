@@ -98,6 +98,11 @@ public class PmsProduct {
     /**
      * 具体商品规格
      */
-    private List<PmsProductAttibuteValue> pmsProductAttibuteValue;
+    private List<PmsProductAttributeValue> pmsProductAttributeValue;
+
+    /**
+     * 商品属性列表，用于前端展示选择
+     */
+    private String attributeList;
 
 }

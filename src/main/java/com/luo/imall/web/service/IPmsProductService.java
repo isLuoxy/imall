@@ -12,11 +12,11 @@ import com.luo.imall.web.vo.CreatePmsProductRequest;
 public interface IPmsProductService {
 
     /**
-     * 通过 id 查找商品
-     * @param id
+     * 通过 商品编号 查找商品
+     * @param sn 商品编号
      * @return  {@link CommonResult}
      */
-    CommonResult findProductById(Long id);
+    CommonResult findProductBySn(Long sn);
 
     /**
      * 通过关键字模糊查询商品

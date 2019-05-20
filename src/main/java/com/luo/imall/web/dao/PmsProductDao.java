@@ -17,11 +17,11 @@ public interface PmsProductDao {
 
 
     /**
-     * 通过 id 查找商品详情
-     * @param id
+     * 通过 商品编号 查找商品详情
+     * @param sn 商品编号
      * @return
      */
-    List<PmsProduct> findProductById(Long id);
+    List<PmsProduct> findProductBySn(Long sn);
 
 
     /**
@@ -51,6 +51,7 @@ public interface PmsProductDao {
     /**
      * 通过分类 id 查找商品详情
      * @param id
+     * @return
      */
     List<PmsProduct> findProductByClassificationId(Long id);
 }

@@ -35,4 +35,11 @@ public interface OmsCartItemDao {
      * @return
      */
     List<OmsCartItem> getCartByName(String name);
+
+    /**
+     * 更新购物车信息
+     * @param omsCartItem {@link OmsCartItem}
+     * @return
+     */
+    boolean UpdateCart(OmsCartItem omsCartItem);
 }

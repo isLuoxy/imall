@@ -1,7 +1,6 @@
 package com.luo.imall.web.controller;
 
 import com.luo.imall.web.service.IPmsProductService;
-import com.luo.imall.web.vo.CommonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,7 +25,7 @@ public class PmsProductController {
      */
     @GetMapping("/product/{id}")
     public Object productDetail(@PathVariable Long id) {
-        return pmsProductService.findProductById(id);
+        return pmsProductService.findProductBySn(id);
     }
 
 

@@ -23,7 +23,6 @@ spring:
       username: root
       password: root
       type: com.alibaba.druid.pool.DruidDataSource
-
 ---
 
 # 生产环境配置文件
@@ -31,7 +30,7 @@ spring:
   profiles: pro
   datasource:
       driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql://localhost:3306/imall?useSSL=false
+      url: jdbc:mysql://localhost:3306/imall_test?useSSL=false
       username: root
       password: root
       type: com.alibaba.druid.pool.DruidDataSource

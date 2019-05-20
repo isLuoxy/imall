@@ -4,12 +4,12 @@
 <!-- 指明当前xml对应的Mapper -->
 <mapper namespace="com.luo.imall.web.dao.PmsProductAttributeValueDao">
 
-    <update id="UpdatePmsPgetPmsProductAttributeValue" parameterType="com.luo.imall.web.entity.PmsProductAttibuteValue">
+    <update id="UpdatePmsPgetPmsProductAttributeValue" parameterType="com.luo.imall.web.entity.PmsProductAttributeValue">
 
     </update>
 
-    <update id="inventoryReduction" parameterType="com.luo.imall.web.entity.PmsProductAttibuteValue">
-        update pms_product_attribute_value set stock = (stock-#{difference}) where id = #{id};
+    <update id="inventoryReduction" parameterType="com.luo.imall.web.entity.PmsProductAttributeValue">
+        update pms_product_attribute_value set stock = (stock-#{difference}) where id = #{id} and stock > #{difference};
     </update>
 
 </mapper>

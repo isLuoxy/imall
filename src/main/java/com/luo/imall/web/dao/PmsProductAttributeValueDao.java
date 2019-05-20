@@ -1,6 +1,6 @@
 package com.luo.imall.web.dao;
 
-import com.luo.imall.web.entity.PmsProductAttibuteValue;
+import com.luo.imall.web.entity.PmsProductAttributeValue;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -14,16 +14,16 @@ public interface PmsProductAttributeValueDao {
 
     /**
      * 更新商品 sku 的属性
-     * @param pmsProductAttibuteValue {@link PmsProductAttibuteValue}
+     * @param pmsProductAttributeValue {@link PmsProductAttributeValue}
      * @return
      */
-    boolean UpdatePmsPgetPmsProductAttributeValue(PmsProductAttibuteValue pmsProductAttibuteValue);
+    boolean UpdatePmsPgetPmsProductAttributeValue(PmsProductAttributeValue pmsProductAttributeValue);
 
 
     /**
      * 减少库存
-     * @param pmsProductAttibuteValue {@link PmsProductAttibuteValue}
+     * @param pmsProductAttributeValue {@link PmsProductAttributeValue}
      * @return
      */
-    boolean inventoryReduction(PmsProductAttibuteValue pmsProductAttibuteValue);
+    boolean inventoryReduction(PmsProductAttributeValue pmsProductAttributeValue);
 }

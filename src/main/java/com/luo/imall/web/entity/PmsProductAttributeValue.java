@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PmsProductAttibuteValue {
+public class PmsProductAttributeValue {
 
 
     private Long id;
@@ -23,11 +23,8 @@ public class PmsProductAttibuteValue {
     /** 商品 id*/
     private Long productId;
 
-    /** 商品属性 id，用逗号分割*/
-    private String productAttributeId;
-
-    /** 商品属性名称，用逗号分割 */
-    private String productAttributeName;
+    /** 具体商品 sku 名称，读取时拼接在商品总名称后面形成新名称*/
+    private String productName;
 
     /** 商品属性值，用逗号分割*/
     private String productAttributeValue;
@@ -38,8 +35,14 @@ public class PmsProductAttibuteValue {
     /** 该商品对应的库存 */
     private Integer stock;
 
-    /** 用于接收减库存的值 ，不接受数据库的值*/
-    //private Integer difference;
+
+    /** 商品sn */
+    private Long productSn;
+
+    /**
+     * 商品库存减少的值，不接收数据库的值
+     */
+    private Integer difference;
 
 
 }

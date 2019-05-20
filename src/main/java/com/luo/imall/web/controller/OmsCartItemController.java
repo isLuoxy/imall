@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 
 /**
  * 购物车控制类
@@ -37,11 +38,11 @@ public class OmsCartItemController {
 
         log.info("getCart: {}", authentication);
 
-        if(authentication == null){
-            return CommonResult.failure(ErrorCode.ABNORMAL_STATUE.getCode(),ErrorCode.ABNORMAL_STATUE.getDesc());
+        if (authentication == null) {
+            return CommonResult.failure(ErrorCode.ABNORMAL_STATUE.getCode(), ErrorCode.ABNORMAL_STATUE.getDesc());
         }
 
-        String name = (String)request.getAttribute("name");
+        String name = (String) request.getAttribute("name");
         CommonResult result = cartItemService.getCartByName(name);
 
         request.removeAttribute("authentication");
@@ -53,7 +54,16 @@ public class OmsCartItemController {
     @PostMapping("/cart")
     public Object addCart(@RequestBody CreateOmsCartItemRequest omsCartItemRequest) {
         log.info("addCart: {}", omsCartItemRequest);
+        omsCartItemRequest.setCreateDate(new Date());
         CommonResult result = cartItemService.addCart(omsCartItemRequest);
+        return result;
+    }
+
+    @PutMapping("/cart")
+    public Object updateCart(@RequestBody CreateOmsCartItemRequest omsCartItemRequest) {
+        log.info("updateCart: {}", omsCartItemRequest);
+        CommonResult result = cartItemService.updateCart(omsCartItemRequest);
+
         return result;
     }
 }
