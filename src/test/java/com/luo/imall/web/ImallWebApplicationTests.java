@@ -108,7 +108,7 @@ public class ImallWebApplicationTests {
 
     @Test
     public void token() {
-        String token = "0f806013-4e0a-4016-815f-7ea068b4ce74";
+        String token = "a39b16f2-56c8-436b-8cb6-0bf25635fea9";
         String timestamp = String.valueOf(System.currentTimeMillis());
         String sign = TokenGenerator.tokenGenerator32(false, token, timestamp, token);
 

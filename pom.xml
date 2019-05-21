@@ -16,7 +16,7 @@
 
 	<properties>
 		<java.version>1.8</java.version>
-        <skipTests>true</skipTests>
+		<skipTests>true</skipTests>
 	</properties>
 
 	<dependencies>
@@ -91,6 +91,7 @@
 	</dependencies>
 
 	<build>
+
 		<finalName>imall-web-0.1</finalName>
 		<plugins>
 			<plugin>
@@ -99,15 +100,22 @@
 			</plugin>
 		</plugins>
 
-        <resources>
-            <resource>
-                <directory>src/main/java</directory>
-                <filtering>false</filtering>
-                <includes>
-                    <include>**/mapper/*.xml</include>
-                </includes>
-            </resource>
-        </resources>
+
+        <!--<resources>-->
+            <!--<resource>-->
+                <!--<directory>src/main/java</directory>-->
+                <!--<filtering>false</filtering>-->
+                <!--<includes>-->
+                    <!--<include>**/mapper/*.xml</include>-->
+                <!--</includes>-->
+            <!--</resource>-->
+
+			<!--<resource>-->
+				<!--<directory>src/main/resources</directory>-->
+			<!--</resource>-->
+        <!--</resources>-->
+
 	</build>
+
 
 </project>
