@@ -4,6 +4,7 @@ package com.l99.imall.service.impl;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.l99.imall.dao.SmsFlashPromotionDao;
 import com.l99.imall.pojo.CommonResult;
+import com.l99.imall.pojo.CreateSmsFlashPromotionOrderRequest;
 import com.l99.imall.pojo.SmsFlashPromotion;
 import com.l99.imall.service.ISmsFlashPromotionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ public class SmsFlashPromotrionServiceImpl implements ISmsFlashPromotionService 
 
     @Override
     public CommonResult addFlashPromotion(SmsFlashPromotion smsFlashPromotion) {
-        boolean result = flashPromotionDao.addFlashPromotrion(smsFlashPromotion);
+        boolean result = flashPromotionDao.addFlashPromotion(smsFlashPromotion);
         if (result) {
             return CommonResult.success();
         }

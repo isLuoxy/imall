@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 指明当前xml对应的Mapper -->
+<mapper namespace="com.l99.imall.dao.SmsFlashPromotionOrderItemDao">
+
+    <insert id="addFlashPromotionOrderItem" parameterType="com.l99.imall.pojo.SmsFlashPromotionOrderItem" >
+        insert into sms_flash_promotion_order_item(order_id,flash_promotion_product_id,product_name,product_price,product_quantity)
+        values (#{orderId},#{flashPromotionProductId},#{productName},#{productPrice},#{productQuantity})
+    </insert>
+
+
+</mapper>

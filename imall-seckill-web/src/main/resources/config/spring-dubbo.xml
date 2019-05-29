@@ -10,4 +10,5 @@
     <dubbo:application name="web"/>
     <dubbo:registry address="zookeeper://127.0.0.1:2181"/>
     <dubbo:annotation package="com.l99.imall.controller" />
+
 </beans>

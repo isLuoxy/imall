@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 指明当前xml对应的Mapper -->
+<mapper namespace="com.l99.imall.dao.SmsFlashPromotionOrderDao">
+
+    <insert id="addFlashPromotionOrder" parameterType="com.l99.imall.pojo.SmsFlashPromotionOrder">
+        insert into
+        sms_flash_promotion_order(order_sn,money,member_id,create_time,pay_time,status,receiver_name,receiver_phone,receiver_province,receiver_city,receiver_region,receiver_detail_address)
+        values
+        (#{orderSn},#{money},#{memberId},#{createTime},#{payTime},#{status},#{receiverName},#{receiverPhone},#{receiverProvince},#{receiverCity},#{receiverRegion},#{receiverDetailAddress});
+        <selectKey resultType="Long" order="AFTER" keyProperty="id">
+            select LAST_INSERT_ID() as id;
+        </selectKey>
+    </insert>
+
+
+</mapper>

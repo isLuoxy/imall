@@ -18,29 +18,20 @@ public class SmsFlashPromotion implements Serializable {
     private Long id;
 
 
-    /** 商品 sku id*/
-    private Long productId;
-
     /** 标题 */
     private String title;
 
-    /** 开始时间 */
+    /** 开始日期 */
     private Date startDate;
 
-    /** 结束时间 */
+    /** 结束日期 */
     private Date endDate;
 
-    /** 状态 */
-    private String status;
+    /** 开始时间 */
+    private Date startTime;
 
-    /** 创建时间 */
-    private Date createTime;
-
-    /** 秒杀商品数*/
-    private Integer num;
-
-    /** 剩余库存 */
-    private Integer stockCount;
+    /** 结束时间 */
+    private Date endTime;
 
     /** 描述 */
     private String introduction;

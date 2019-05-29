@@ -9,19 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>imall-seckill-interface</artifactId>
+    <artifactId>imall-seckill-util</artifactId>
+    <description> imall 工具类 </description>
 
-    <dependencies>
-        <dependency>
-            <groupId>com.l99.imall</groupId>
-            <artifactId>imall-pojo</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>1.2.56</version>
-        </dependency>
-    </dependencies>
 </project>

@@ -5,8 +5,15 @@
 <mapper namespace="com.l99.imall.dao.SmsFlashPromotionDao">
 
   <insert id="addFlashPromotrion" parameterType="com.l99.imall.pojo.SmsFlashPromotion">
-      insert into sms_flash_promotion(product_id,title,start_date,end_date,status,create_time,num,stock_count,introduction)
-      values(#{productId},#{title},#{startDate},#{endDate},#{status},#{createTime},#{num},#{stockCount},#{introduction})
+      insert into sms_flash_promotion(title,start_date,end_date,start_time,end_time,introduction)
+      values(#{title},#{startDate},#{endDate},#{startTime},#{endTime},#{introduction})
   </insert>
+
+
+    <!-- 修改秒杀商品库存 -->
+    <update id="updateFlashInventory" parameterType="com.l99.imall.pojo.SmsFlashPromotion">
+        update sms_flash_promotion set stock_count = stock_count - #{different} where product_id = #{productId} and stock_count > #{different}
+    </update>
+
 
 </mapper>

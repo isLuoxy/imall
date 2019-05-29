@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 指明当前xml对应的Mapper -->
+<mapper namespace="com.l99.imall.dao.SmsFlashPromotionProductDao">
+
+    <insert id="addFlashPromotionProduct" parameterType="com.l99.imall.pojo.SmsFlashPromotionProduct">
+      insert into sms_flash_promotion_product(flash_promotion_id,product_id,status,num)
+      values(#{flashPromotionId},#{productId},#{status},#{num})
+  </insert>
+
+
+    <!-- 修改秒杀商品库存 -->
+    <update id="updateSmsFlashPromotionProductInventory" >
+        update sms_flash_promotion_product set num = num - #{difference} where id = #{id} and num >= #{difference}
+    </update>
+
+
+</mapper>
