@@ -1,5 +1,6 @@
 package com.luo.imall.web.dao;
 
+import com.luo.imall.web.entity.BriefProductAttributeValue;
 import com.luo.imall.web.entity.PmsProduct;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -23,6 +24,13 @@ public interface PmsProductDao {
      */
     List<PmsProduct> findProductBySn(Long sn);
 
+    /**
+     * 通过 商品规格 查找商品编号
+     * @param productAttributeValue 商品规格
+     * @param productId 商品id
+     * @return {@link BriefProductAttributeValue}
+     */
+    BriefProductAttributeValue findProductByAttributeValue(@Param("productId") Long productId, @Param("productAttributeValue") String productAttributeValue);
 
     /**
      * 通过关键字模糊查询商品
@@ -45,7 +53,7 @@ public interface PmsProductDao {
      * @param upperBoundary 上区间
      * @return
      */
-    List<PmsProduct> queryProductByInterval(@Param("good") String good,@Param("lowerBoundary") Integer lowerBoundary, @Param("upperBoundary") Integer upperBoundary);
+    List<PmsProduct> queryProductByInterval(@Param("good") String good, @Param("lowerBoundary") Integer lowerBoundary, @Param("upperBoundary") Integer upperBoundary);
 
 
     /**

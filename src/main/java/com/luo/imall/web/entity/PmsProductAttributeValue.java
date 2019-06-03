@@ -26,7 +26,7 @@ public class PmsProductAttributeValue {
     /** 具体商品 sku 名称，读取时拼接在商品总名称后面形成新名称*/
     private String productName;
 
-    /** 商品属性值，用逗号分割*/
+    /** 商品属性值，json 格式*/
     private String productAttributeValue;
 
     /** 该商品对应的价格 */

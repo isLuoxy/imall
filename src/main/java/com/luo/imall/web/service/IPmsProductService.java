@@ -1,6 +1,7 @@
 package com.luo.imall.web.service;
 
 import com.luo.imall.web.vo.CommonResult;
+import com.luo.imall.web.vo.CreatePmsProductAttributeValueRequest;
 import com.luo.imall.web.vo.CreatePmsProductRequest;
 
 /**
@@ -46,4 +47,11 @@ public interface IPmsProductService {
      * @return {@link CommonResult}
      */
     CommonResult findProductByClassificationId(Long id);
+
+    /**
+     * 通过商品规格名称查找商品
+     * @param pmsProductAttributeValueRequest {@link CreatePmsProductAttributeValueRequest}
+     * @return
+     */
+    CommonResult findProductByAttributeValue(CreatePmsProductAttributeValueRequest pmsProductAttributeValueRequest);
 }

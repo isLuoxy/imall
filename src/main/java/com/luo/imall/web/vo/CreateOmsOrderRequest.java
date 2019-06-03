@@ -50,7 +50,7 @@ public class CreateOmsOrderRequest {
     private Integer status;
 
     /**
-     * 订单类型： 0 -> 正常订单 1 -> 秒杀订单
+     * 订单类型： 0 -> 普通订单 1 -> 秒杀订单
      *
      */
     private Integer orderType;

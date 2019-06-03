@@ -2,9 +2,11 @@ package com.luo.imall.web.service.impl;
 
 import com.luo.imall.web.constant.ErrorCode;
 import com.luo.imall.web.dao.PmsProductDao;
+import com.luo.imall.web.entity.BriefProductAttributeValue;
 import com.luo.imall.web.entity.PmsProduct;
 import com.luo.imall.web.service.IPmsProductService;
 import com.luo.imall.web.vo.CommonResult;
+import com.luo.imall.web.vo.CreatePmsProductAttributeValueRequest;
 import com.luo.imall.web.vo.CreatePmsProductRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,6 +34,11 @@ public class PmsProductServiceImpl implements IPmsProductService {
         return new CommonResult(products);
     }
 
+    @Override
+    public CommonResult findProductByAttributeValue(CreatePmsProductAttributeValueRequest pmsProductAttributeValueRequest) {
+        BriefProductAttributeValue briefProductAttributeValue = pmsProductDao.findProductByAttributeValue(pmsProductAttributeValueRequest.getProductId(), pmsProductAttributeValueRequest.getProductAttributeValue());
+        return new CommonResult(briefProductAttributeValue);
+    }
 
     @Override
     public CommonResult keywordsFuzzyQuery(CreatePmsProductRequest pmsProductRequest) {

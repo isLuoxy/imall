@@ -1,10 +1,10 @@
 package com.luo.imall.web.controller;
 
 import com.luo.imall.web.service.IPmsProductService;
+import com.luo.imall.web.vo.CreatePmsProductAttributeValueRequest;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 商品控制器
@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
  *
  */
 @RestController
+@Slf4j
 public class PmsProductController {
 
 
@@ -20,7 +21,7 @@ public class PmsProductController {
     IPmsProductService pmsProductService;
 
     /**
-     * 获取商品详情
+     * 根据商品编号获取商品详情
      * @return
      */
     @GetMapping("/product/{id}")
@@ -28,5 +29,14 @@ public class PmsProductController {
         return pmsProductService.findProductBySn(id);
     }
 
-
+    /**
+     * 通过商品规格查找商品编号
+     * @param pmsProductAttributeValueRequest
+     * @return
+     */
+    @PostMapping("/product")
+    public Object product(@RequestBody CreatePmsProductAttributeValueRequest pmsProductAttributeValueRequest) {
+        log.info("商品规格: {}", pmsProductAttributeValueRequest);
+        return pmsProductService.findProductByAttributeValue(pmsProductAttributeValueRequest);
+    }
 }

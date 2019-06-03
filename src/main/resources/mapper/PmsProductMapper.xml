@@ -56,4 +56,10 @@
     <select id="findProductByClassificationId" parameterType="Long" resultType="com.luo.imall.web.entity.PmsProduct">
         select * from pms_product where product_category_id = #{id};
     </select>
+
+
+    <select id="findProductByAttributeValue" resultType="com.luo.imall.web.entity.BriefProductAttributeValue">
+        select product_sn
+        from pms_product_attribute_value  where product_id = #{productId} and product_attribute_value = #{productAttributeValue};
+    </select>
 </mapper>

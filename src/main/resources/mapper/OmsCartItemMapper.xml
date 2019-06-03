@@ -18,7 +18,7 @@
 
 
     <insert id="addCart" parameterType="com.luo.imall.web.entity.OmsCartItem">
-        insert into oms_cart_item(product_id,product_name,product_sn,member_id,member_nickname,quantity,price,product_brand,create_date,modify_date)
-        values(#{productId},#{productName},#{productSn},#{memberId},#{memberNickname},#{quantity},#{price},#{productBrand},#{createDate},#{modifyDate})
+        insert into oms_cart_item(product_id,product_name,product_sn,member_id,member_nickname,quantity,price,product_brand,create_date,modify_date,product_type)
+        values(#{productId},#{productName},#{productSn},#{memberId},#{memberNickname},#{quantity},#{price},#{productBrand},#{createDate},#{modifyDate},#{productType})
     </insert>
 </mapper>

@@ -49,6 +49,13 @@ public class OmsCartItem {
      */
     private BigDecimal price;
 
+    /**
+     * 添加到购物车的商品类型
+     * 0 -> 正常商品  1 -> 秒杀商品
+     * 不同类型的商品结算时加入的订单不同，分为正常订单和秒杀订单
+     */
+    private Integer productType;
+
 
     /**
      * 商品主图
