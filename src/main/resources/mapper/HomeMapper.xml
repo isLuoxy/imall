@@ -4,13 +4,22 @@
 <!-- 指明当前xml对应的Mapper -->
 <mapper namespace="com.luo.imall.web.dao.HomeDao">
 
+
+    <resultMap id="baseResultMap" type="com.luo.imall.web.entity.BriefProduct">
+        <result property="id" column="product_id"/>
+        <result property="productSn" column="product_sn"/>
+        <result property="name" column="name"/>
+        <result property="price" column="price"/>
+        <result property="productName" column="product_name"/>
+    </resultMap>
+
     <!-- 获取推荐商品列表 根据排序降序-->
-    <select id="getRecommendProductList" parameterType="com.luo.imall.web.entity.Page" resultType="com.luo.imall.web.entity.BriefProduct">
-        select * from pms_product where recommand_status = 1 order by sort desc limit  #{pageStart},#{pageSize};
+    <select id="getRecommendProductList" parameterType="com.luo.imall.web.entity.Page" resultMap="baseResultMap">
+      select b.id as product_id , a.name ,b.product_sn,b.price,b.product_name from pms_product a,pms_product_attribute_value b where a.recommand_status = 1 and a.id = b.product_id group by product_id limit #{pageStart},#{pageSize}
     </select>
 
     <!--获取新品列表 根据排序降序-->
-    <select id="getNewProductList" parameterType="com.luo.imall.web.entity.Page" resultType="com.luo.imall.web.entity.BriefProduct">
-        select * from pms_product where new_status = 1 order by sort desc limit #{pageStart},#{pageSize};
+    <select id="getNewProductList" parameterType="com.luo.imall.web.entity.Page" resultMap="baseResultMap">
+      select b.id as product_id , a.name ,b.product_sn,b.price,b.product_name from pms_product a,pms_product_attribute_value b where a.new_status = 1 and a.id = b.product_id group by product_id limit #{pageStart},#{pageSize}
     </select>
 </mapper>

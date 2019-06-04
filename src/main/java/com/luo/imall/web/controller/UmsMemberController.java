@@ -38,11 +38,6 @@ public class UmsMemberController {
     @Autowired
     HttpServletRequest servletRequest;
 
-    @GetMapping("/login")
-    public String route2Login() {
-        log.info("login get");
-        return "login";
-    }
 
     @PostMapping("/login")
     @ResponseBody
@@ -68,7 +63,7 @@ public class UmsMemberController {
     @ResponseBody
     public Object verify(@RequestBody CreateUmsMemberRequest request) {
         log.info("verify: {}", request);
-        return memberService.validateRegister(request);
+        return memberService.validateUserName(request);
     }
 
     @PostMapping("/register")

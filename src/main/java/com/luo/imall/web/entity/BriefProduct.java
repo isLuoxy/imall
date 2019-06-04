@@ -17,7 +17,15 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 public class BriefProduct {
 
+    /**
+     * 这个id是商品规格表中的id
+     */
     private Long id;
+
+    /**
+     * 商品编号
+     */
+    private Long productSn;
 
     /**
      * 商品名称
@@ -31,8 +39,8 @@ public class BriefProduct {
     private BigDecimal price;
 
     /**
-     * 副标题
+     * 商品规格名称
      */
-    private String subTitle;
+    private String productName;
 
 }
