@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Date;
 
 /**
  * 购物车控制类
@@ -32,16 +31,11 @@ public class OmsCartItemController {
      */
     @GetMapping("/cart")
     public Object getCart(HttpServletRequest request) {
+
         // 查看当前 鉴权情况
-
-        Object authentication = request.getAttribute("authentication");
-
-        log.info("getCart: {}", authentication);
-
-        if (authentication == null) {
+        if (validateStatus(request)) {
             return CommonResult.failure(ErrorCode.ABNORMAL_STATUE.getCode(), ErrorCode.ABNORMAL_STATUE.getDesc());
         }
-
         String name = (String) request.getAttribute("name");
         CommonResult result = cartItemService.getCartByName(name);
 
@@ -52,18 +46,50 @@ public class OmsCartItemController {
     }
 
     @PostMapping("/cart")
-    public Object addCart(@RequestBody CreateOmsCartItemRequest omsCartItemRequest) {
+    public Object addCart(@RequestBody CreateOmsCartItemRequest omsCartItemRequest, HttpServletRequest request) {
+        if (validateStatus(request)) {
+            return CommonResult.failure(ErrorCode.ABNORMAL_STATUE.getCode(), ErrorCode.ABNORMAL_STATUE.getDesc());
+        }
+
         log.info("addCart: {}", omsCartItemRequest);
-        omsCartItemRequest.setCreateDate(new Date());
+        omsCartItemRequest.setUsername((String) request.getAttribute("name"));
         CommonResult result = cartItemService.addCart(omsCartItemRequest);
+
+        request.removeAttribute("authentication");
+        request.removeAttribute("name");
+
         return result;
     }
 
+
     @PutMapping("/cart")
-    public Object updateCart(@RequestBody CreateOmsCartItemRequest omsCartItemRequest) {
+    public Object updateCart(@RequestBody CreateOmsCartItemRequest omsCartItemRequest, HttpServletRequest request) {
+        if (validateStatus(request)) {
+            return CommonResult.failure(ErrorCode.ABNORMAL_STATUE.getCode(), ErrorCode.ABNORMAL_STATUE.getDesc());
+        }
+
         log.info("updateCart: {}", omsCartItemRequest);
         CommonResult result = cartItemService.updateCart(omsCartItemRequest);
 
+        request.removeAttribute("authentication");
+        request.removeAttribute("name");
+
         return result;
+    }
+
+    /**
+     * 登陆状态验证
+     * @param request
+     * @return
+     */
+    private boolean validateStatus(HttpServletRequest request) {
+        Object authentication = request.getAttribute("authentication");
+
+        log.info("getCart: {}", authentication);
+
+        if (authentication == null) {
+            return true;
+        }
+        return false;
     }
 }

@@ -2,6 +2,7 @@ package com.luo.imall.web.service.impl;
 
 import com.luo.imall.web.constant.ErrorCode;
 import com.luo.imall.web.dao.OmsCartItemDao;
+import com.luo.imall.web.dao.PmsProductDao;
 import com.luo.imall.web.entity.OmsCartItem;
 import com.luo.imall.web.service.IOmsCartItemService;
 import com.luo.imall.web.vo.CommonResult;
@@ -23,17 +24,19 @@ public class OmsCartItemServiceImpl implements IOmsCartItemService {
     @Autowired
     OmsCartItemDao cartItemDao;
 
+    @Autowired
+    PmsProductDao pmsProductDao;
 
     @Override
     public CommonResult getCart(CreateOmsCartItemRequest omsCartItemRequest) {
-        List<OmsCartItem> omsCartItems = cartItemDao.getCart(omsCartItemRequest.toCartItem());
+        List<OmsCartItem> omsCartItems = cartItemDao.getCart(omsCartItemRequest.toCartItem(pmsProductDao));
 
         return new CommonResult(omsCartItems);
     }
 
     @Override
     public CommonResult addCart(CreateOmsCartItemRequest omsCartItemRequest) {
-        boolean result = cartItemDao.addCart(omsCartItemRequest.toCartItem());
+        boolean result = cartItemDao.addCart(omsCartItemRequest.toCartItem(pmsProductDao));
         if (result) {
             return CommonResult.success();
         }

@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.List;
 
 /**
  *
@@ -29,7 +28,7 @@ public class ProductTest {
      */
     @Test
     public void findProductBySn(){
-        List<PmsProduct> productBySn = pmsProductDao.findProductBySn(100000177786L);
+        PmsProduct productBySn = pmsProductDao.findProductBySn(100000177786L);
         System.out.println(JSONArray.fromObject(productBySn).toString());
     }
 }

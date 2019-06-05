@@ -9,7 +9,7 @@
    </select>
 
     <select id="getCartByName" parameterType="String" resultType="com.luo.imall.web.entity.BriefCartItem">
-       select id,product_id,quantity,product_name,product_attribute_value,price from oms_cart_item where member_id in (select id from ums_member where username = #{name});
+       select id,product_id,quantity,product_name,product_attribute_value,price from oms_cart_item where username = #{name} ;
     </select>
 
     <update id="UpdateCart" parameterType="com.luo.imall.web.entity.OmsCartItem">
@@ -18,7 +18,7 @@
 
 
     <insert id="addCart" parameterType="com.luo.imall.web.entity.OmsCartItem">
-        insert into oms_cart_item(product_id,product_name,product_sn,member_id,member_nickname,quantity,price,product_brand,create_date,modify_date,product_type)
-        values(#{productId},#{productName},#{productSn},#{memberId},#{memberNickname},#{quantity},#{price},#{productBrand},#{createDate},#{modifyDate},#{productType})
+        insert into oms_cart_item(product_id,product_name,product_sn,username,member_nickname,quantity,price,product_brand,create_date,modify_date,product_type,product_attribute_value)
+        values(#{productId},#{productName},#{productSn},#{username},#{memberNickname},#{quantity},#{price},#{productBrand},#{createDate},#{modifyDate},#{productType},#{productAttributeValue})
     </insert>
 </mapper>

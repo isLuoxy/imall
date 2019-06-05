@@ -1,8 +1,10 @@
 package com.luo.imall.web.vo;
 
 import com.luo.imall.web.annotation.ToReconstruct;
+import com.luo.imall.web.dao.PmsProductDao;
 import com.luo.imall.web.entity.BriefCartItem;
 import com.luo.imall.web.entity.OmsCartItem;
+import com.luo.imall.web.entity.PmsProduct;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -31,8 +33,8 @@ public class CreateOmsCartItemRequest {
     /** 商品具体 sku id */
     private Long productId;
 
-    /** 会员id */
-    private Long memberId;
+    /** 会员用户名 */
+    private String username;
 
     /**
      * 购买数量
@@ -55,12 +57,6 @@ public class CreateOmsCartItemRequest {
      */
     private String productName;
 
-    /**
-     * 会员昵称
-     *
-     * @mbggenerated
-     */
-    private String memberNickname;
 
     /**
      * 创建时间
@@ -91,21 +87,35 @@ public class CreateOmsCartItemRequest {
 
     /**
      * 用于转换成 {@link OmsCartItem}
+     * @param pmsProductDao {@link PmsProductDao}
      * @return {@link OmsCartItem}
      */
-    public OmsCartItem toCartItem() {
+    public OmsCartItem toCartItem(PmsProductDao pmsProductDao) {
+        // 根据商品id获取商品详情，从中取必要值
+        PmsProduct pmsProduct = pmsProductDao.findProductById(productId);
+
         OmsCartItem omsCartItem = new OmsCartItem();
-        omsCartItem.setMemberId(memberId);
+        // 用户名
+        omsCartItem.setUsername(username);
+        // 商品id
         omsCartItem.setProductId(productId);
+        // 商品编号
+        omsCartItem.setProductSn(pmsProduct.getPmsProductAttributeValue().getProductSn());
+        // 拼接名称
+        omsCartItem.setProductName(pmsProduct.getName() + " " + pmsProduct.getPmsProductAttributeValue().getProductName());
+        // 商品品牌
+        omsCartItem.setProductBrand(pmsProduct.getBrandName());
+        // 商品规格
+        omsCartItem.setProductAttributeValue(pmsProduct.getPmsProductAttributeValue().getProductAttributeValue());
+        // 创建时间
         omsCartItem.setCreateDate(new Date());
+        // 更新时间
         omsCartItem.setModifyDate(new Date());
-        omsCartItem.setProductName(productName);
-        omsCartItem.setMemberNickname(memberNickname);
-        omsCartItem.setProductAttributeValue(productAttributeValue);
+        // 价格
         omsCartItem.setPrice(price);
-        omsCartItem.setProductSn(productSn);
+        // 数量
         omsCartItem.setQuantity(quantity);
-        omsCartItem.setProductBrand(productBrand);
+
         return omsCartItem;
     }
 
@@ -113,7 +123,7 @@ public class CreateOmsCartItemRequest {
      * 转换成 {@link OmsCartItem} 用于更新
      * @return {@link OmsCartItem}
      */
-    public OmsCartItem update2CartItem(){
+    public OmsCartItem update2CartItem() {
         OmsCartItem omsCartItem = new OmsCartItem();
         omsCartItem.setId(id);
         omsCartItem.setModifyDate(new Date());

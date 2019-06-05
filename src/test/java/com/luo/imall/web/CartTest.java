@@ -25,7 +25,7 @@ public class CartTest {
     public void newCartInstance(){
         CreateOmsCartItemRequest request = new CreateOmsCartItemRequest();
         request.setProductId(5l);
-        request.setMemberId(13l);
+        request.setUsername("test");
         request.setQuantity(2);
         request.setProductBrand("香奈儿");
         request.setProductSn(40059751955l);

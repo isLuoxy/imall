@@ -19,7 +19,7 @@
         <result column="weight" jdbcType="DECIMAL" property="weight" />
         <result column="service_ids" jdbcType="VARCHAR" property="serviceIds" />
         <result column="attribute_list" property="attributeList" />
-        <collection property="pmsProductAttributeValue" javaType="ArrayList" ofType="com.luo.imall.web.entity.PmsProductAttributeValue">
+        <association property="pmsProductAttributeValue" javaType="com.luo.imall.web.entity.PmsProductAttributeValue">
             <id column="id" property="id" />
             <result column="productId" property="productId" />
             <result column="product_attribute_value" property="productAttributeValue" />
@@ -27,8 +27,13 @@
             <result column="stock" property="stock" />
             <result column="product_sn" jdbcType="VARCHAR" property="productSn" />
             <result column="product_name" property="productName" />
-        </collection>
+        </association>
     </resultMap>
+
+    <select id="findProductById" parameterType="Long" resultMap="BaseResultMap">
+        select b.id ,b.product_name,a.name, a.brand_name,b.product_attribute_value,b.product_sn
+        from pms_product a,pms_product_attribute_value b where a.id = b.product_id and b.id = #{id};
+    </select>
 
     <!-- 查找商品详情 -->
     <select id="findProductBySn" parameterType="Long" resultMap="BaseResultMap">

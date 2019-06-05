@@ -27,8 +27,8 @@ public class PmsProductServiceImpl implements IPmsProductService {
 
     @Override
     public CommonResult findProductBySn(Long id) {
-        List<PmsProduct> products = pmsProductDao.findProductBySn(id);
-        if (products.size() == 0) {
+        PmsProduct products = pmsProductDao.findProductBySn(id);
+        if (products == null) {
             return CommonResult.failure(ErrorCode.PRODUCT_DOES_NOT_EXIST.getCode(), ErrorCode.PRODUCT_DOES_NOT_EXIST.getDesc());
         }
         return new CommonResult(products);

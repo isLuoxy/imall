@@ -31,9 +31,9 @@ public class OmsCartItem {
     private Long productSn;
 
     /**
-     * 用户 id
+     * 用户名称
      */
-    private Long memberId;
+    private String username;
 
     /**
      * 购买数量

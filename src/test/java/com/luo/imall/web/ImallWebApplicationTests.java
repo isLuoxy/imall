@@ -48,7 +48,7 @@ public class ImallWebApplicationTests {
 
     @Test
     public void test() {
-        List<PmsProduct> product = pmsProductDao.findProductBySn(27L);
+      PmsProduct product = pmsProductDao.findProductBySn(27L);
 
 //        for (PmsProduct p : product) {
 //            String productAttributeName = p.getPmsProductAttributeValue();
@@ -108,7 +108,7 @@ public class ImallWebApplicationTests {
 
     @Test
     public void token() {
-        String token = "a39b16f2-56c8-436b-8cb6-0bf25635fea9";
+        String token = "6775432f-81b1-483e-b5b3-fb61ddfb188e";
         String timestamp = String.valueOf(System.currentTimeMillis());
         String sign = TokenGenerator.tokenGenerator32(false, token, timestamp, token);
 

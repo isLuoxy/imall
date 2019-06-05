@@ -18,11 +18,17 @@ public interface PmsProductDao {
 
 
     /**
+     * 根据 商品id 查找商品详情
+     * @param id 商品id
+     * @return {@link PmsProduct}
+     */
+    PmsProduct findProductById(Long id);
+    /**
      * 通过 商品编号 查找商品详情
      * @param sn 商品编号
      * @return
      */
-    List<PmsProduct> findProductBySn(Long sn);
+    PmsProduct findProductBySn(Long sn);
 
     /**
      * 通过 商品规格 查找商品编号
