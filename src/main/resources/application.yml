@@ -1,8 +1,4 @@
 spring:
-  mvc:
-    view:
-      prefix: /html/
-      suffix: .html
   profiles:
     active: dev
 mybatis:

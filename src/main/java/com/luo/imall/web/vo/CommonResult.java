@@ -47,10 +47,20 @@ public class CommonResult {
      * @param errorMessage
      * @return
      */
-    public static CommonResult failure(Integer code,String errorMessage) {
-        
+    public static CommonResult failure(Integer code, String errorMessage) {
+
         return new CommonResult(code, errorMessage, null);
     }
 
 
+    /**
+     * 带有数据的错误响应
+     * @param code
+     * @param errorMessage
+     * @param data
+     * @return
+     */
+    public static CommonResult failure(Integer code, String errorMessage, Object data) {
+        return new CommonResult(code, errorMessage, data);
+    }
 }

@@ -2,6 +2,7 @@ package com.luo.imall.web.controller;
 
 import com.luo.imall.web.constant.ErrorCode;
 import com.luo.imall.web.service.IOmsCartItemService;
+import com.luo.imall.web.util.LoginUtil;
 import com.luo.imall.web.vo.CommonResult;
 import com.luo.imall.web.vo.CreateOmsCartItemRequest;
 import lombok.extern.slf4j.Slf4j;
@@ -33,7 +34,7 @@ public class OmsCartItemController {
     public Object getCart(HttpServletRequest request) {
 
         // 查看当前 鉴权情况
-        if (validateStatus(request)) {
+        if (LoginUtil.validateStatus(request)) {
             return CommonResult.failure(ErrorCode.ABNORMAL_STATUE.getCode(), ErrorCode.ABNORMAL_STATUE.getDesc());
         }
         String name = (String) request.getAttribute("name");
@@ -47,12 +48,13 @@ public class OmsCartItemController {
 
     @PostMapping("/cart")
     public Object addCart(@RequestBody CreateOmsCartItemRequest omsCartItemRequest, HttpServletRequest request) {
-        if (validateStatus(request)) {
+        if (LoginUtil.validateStatus(request)) {
             return CommonResult.failure(ErrorCode.ABNORMAL_STATUE.getCode(), ErrorCode.ABNORMAL_STATUE.getDesc());
         }
 
         log.info("addCart: {}", omsCartItemRequest);
         omsCartItemRequest.setUsername((String) request.getAttribute("name"));
+
         CommonResult result = cartItemService.addCart(omsCartItemRequest);
 
         request.removeAttribute("authentication");
@@ -64,7 +66,7 @@ public class OmsCartItemController {
 
     @PutMapping("/cart")
     public Object updateCart(@RequestBody CreateOmsCartItemRequest omsCartItemRequest, HttpServletRequest request) {
-        if (validateStatus(request)) {
+        if (LoginUtil.validateStatus(request)) {
             return CommonResult.failure(ErrorCode.ABNORMAL_STATUE.getCode(), ErrorCode.ABNORMAL_STATUE.getDesc());
         }
 
@@ -77,19 +79,5 @@ public class OmsCartItemController {
         return result;
     }
 
-    /**
-     * 登陆状态验证
-     * @param request
-     * @return
-     */
-    private boolean validateStatus(HttpServletRequest request) {
-        Object authentication = request.getAttribute("authentication");
 
-        log.info("getCart: {}", authentication);
-
-        if (authentication == null) {
-            return true;
-        }
-        return false;
-    }
 }

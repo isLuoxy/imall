@@ -36,10 +36,9 @@ public enum ErrorCode {
     ABNORMAL_STATUE(6, "暂未登陆，请登陆；如已登陆，则可能存在风险问题"),
 
 
-    INVENTORY_NOT_ENOUGH(7, "库存不够"),
+    INVENTORY_NOT_ENOUGH(7, "商品加购件数（含已加购件数）已超过库存"),
 
     UPDATE_CART_FAILED(8, "更新购物车失败");
-
 
 
     /** 错误码 */

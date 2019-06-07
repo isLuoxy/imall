@@ -21,9 +21,9 @@ public class OmsCartItem {
     private Long id;
 
     /**
-     * 商品 id
+     * 商品具体规格 id
      */
-    private Long productId;
+    private Long productAttributeValueId;
 
     /**
      * 商品 sku 编码

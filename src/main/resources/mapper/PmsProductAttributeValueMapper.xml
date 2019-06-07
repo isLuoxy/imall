@@ -4,12 +4,19 @@
 <!-- 指明当前xml对应的Mapper -->
 <mapper namespace="com.luo.imall.web.dao.PmsProductAttributeValueDao">
 
-    <update id="UpdatePmsPgetPmsProductAttributeValue" parameterType="com.luo.imall.web.entity.PmsProductAttributeValue">
+    <update id="UpdatePmsProductAttributeValue" parameterType="com.luo.imall.web.entity.PmsProductAttributeValue">
 
     </update>
 
+    <!--减库存-->
     <update id="inventoryReduction" parameterType="com.luo.imall.web.entity.PmsProductAttributeValue">
         update pms_product_attribute_value set stock = (stock-#{difference}) where id = #{id} and stock > #{difference};
     </update>
+
+    <!-- 通过 商品规格id 获取商品库存-->
+    <select id="getInventoryByProductAttributeValueId" resultType="Integer">
+        select stock from pms_product_attribute_value where id = #{productAttributeValueId};
+    </select>
+
 
 </mapper>

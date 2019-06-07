@@ -21,7 +21,7 @@ public class BriefCartItem {
     private Long id;
 
     /** 商品 sku id*/
-    private Long productId;
+    private Long productAttributeValueId;
 
     /** 商品数量 */
     private Integer quantity;

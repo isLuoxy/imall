@@ -1,6 +1,7 @@
 package com.luo.imall.web.dao;
 
 import com.luo.imall.web.entity.PmsProductAttributeValue;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -17,7 +18,7 @@ public interface PmsProductAttributeValueDao {
      * @param pmsProductAttributeValue {@link PmsProductAttributeValue}
      * @return
      */
-    boolean UpdatePmsPgetPmsProductAttributeValue(PmsProductAttributeValue pmsProductAttributeValue);
+    boolean UpdatePmsProductAttributeValue(PmsProductAttributeValue pmsProductAttributeValue);
 
 
     /**
@@ -26,4 +27,15 @@ public interface PmsProductAttributeValueDao {
      * @return
      */
     boolean inventoryReduction(PmsProductAttributeValue pmsProductAttributeValue);
+
+    /**
+     * 根据商品规格id获取特定商品库存
+     * @param productAttributeValueId 商品规格id
+     * @return
+     */
+    Integer getInventoryByProductAttributeValueId(@Param("productAttributeValueId") Long productAttributeValueId);
+
+
+
+
 }

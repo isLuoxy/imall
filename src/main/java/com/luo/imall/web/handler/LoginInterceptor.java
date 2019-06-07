@@ -32,6 +32,10 @@ public class LoginInterceptor implements HandlerInterceptor {
         log.info(request.getRequestURI());
 
         String token = request.getParameter("token");
+        if(null == token){
+            //  如果 token不存在
+            return true;
+        }
         String timestamp = request.getParameter("timestamp");
         String sign = request.getParameter("sign");
         String name = stringRedisTemplate.opsForValue().get(token);

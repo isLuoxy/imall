@@ -33,9 +33,16 @@ public interface IOmsCartItemService {
     CommonResult getCartByName(String name);
 
     /**
-     * 动态更新购物车信息
+     * 动态更新购物车信息（覆盖原商品数量）
      * @param omsCartItemRequest
      * @return
      */
     CommonResult updateCart(CreateOmsCartItemRequest omsCartItemRequest);
+
+    /**
+     * 更新购物车信息（添加愿商品数量）
+     * @param omsCartItemRequest
+     * @return
+     */
+    CommonResult updateCartByNum(CreateOmsCartItemRequest omsCartItemRequest);
 }

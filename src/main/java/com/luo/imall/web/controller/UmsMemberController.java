@@ -2,8 +2,7 @@ package com.luo.imall.web.controller;
 
 import com.luo.imall.web.constant.TokenConstant;
 import com.luo.imall.web.service.IUmsMemberService;
-import com.luo.imall.web.util.CookieUtil;
-import com.luo.imall.web.util.TokenGenerator;
+
 import com.luo.imall.web.vo.CommonResult;
 import com.luo.imall.web.vo.CreateUmsMemberRequest;
 import lombok.extern.slf4j.Slf4j;
@@ -13,7 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;

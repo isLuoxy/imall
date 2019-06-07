@@ -36,6 +36,8 @@ public class OmsOrder {
      */
     List<OmsOrderItem> product;
 
+    String memberUsername;
+
     /**
      * 优惠券 id
      *
@@ -57,12 +59,6 @@ public class OmsOrder {
      */
     private Object createTime;
 
-    /**
-     * 用户账号
-     *
-     * @mbggenerated
-     */
-    private String memberUsername;
 
     /**
      * 订单总金额

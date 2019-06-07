@@ -2,7 +2,6 @@ package com.luo.imall.web.vo;
 
 import com.luo.imall.web.annotation.ToReconstruct;
 import com.luo.imall.web.dao.PmsProductDao;
-import com.luo.imall.web.entity.BriefCartItem;
 import com.luo.imall.web.entity.OmsCartItem;
 import com.luo.imall.web.entity.PmsProduct;
 import lombok.AllArgsConstructor;
@@ -31,7 +30,7 @@ public class CreateOmsCartItemRequest {
     private Long id;
 
     /** 商品具体 sku id */
-    private Long productId;
+    private Long productAttributeValueId;
 
     /** 会员用户名 */
     private String username;
@@ -92,13 +91,13 @@ public class CreateOmsCartItemRequest {
      */
     public OmsCartItem toCartItem(PmsProductDao pmsProductDao) {
         // 根据商品id获取商品详情，从中取必要值
-        PmsProduct pmsProduct = pmsProductDao.findProductById(productId);
+        PmsProduct pmsProduct = pmsProductDao.findProductById(productAttributeValueId);
 
         OmsCartItem omsCartItem = new OmsCartItem();
         // 用户名
         omsCartItem.setUsername(username);
         // 商品id
-        omsCartItem.setProductId(productId);
+        omsCartItem.setProductAttributeValueId(productAttributeValueId);
         // 商品编号
         omsCartItem.setProductSn(pmsProduct.getPmsProductAttributeValue().getProductSn());
         // 拼接名称
@@ -131,5 +130,14 @@ public class CreateOmsCartItemRequest {
         return omsCartItem;
     }
 
-
+    /**
+     * 转换成 {@link OmsCartItem} 用于查找购物车中是否存在特定商品
+     * @return {@link OmsCartItem}
+     */
+    public OmsCartItem select2CartItem() {
+        OmsCartItem omsCartItem = new OmsCartItem();
+        omsCartItem.setProductAttributeValueId(productAttributeValueId);
+        omsCartItem.setUsername(username);
+        return omsCartItem;
+    }
 }
