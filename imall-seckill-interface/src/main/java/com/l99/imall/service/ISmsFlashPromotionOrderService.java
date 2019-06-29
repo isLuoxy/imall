@@ -18,4 +18,5 @@ public interface ISmsFlashPromotionOrderService {
      * @return
      */
     CommonResult addFlashPromotionOrder(CreateSmsFlashPromotionOrderRequest createSmsFlashPromotionOrderRequest);
+
 }

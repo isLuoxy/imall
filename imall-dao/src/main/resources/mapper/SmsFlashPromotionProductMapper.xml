@@ -11,9 +11,11 @@
 
 
     <!-- 修改秒杀商品库存 -->
-    <update id="updateSmsFlashPromotionProductInventory" >
+    <update id="updateSmsFlashPromotionProductInventory">
         update sms_flash_promotion_product set num = num - #{difference} where id = #{id} and num >= #{difference}
     </update>
 
-
+    <update id="updateSmsFlashPromotionProductInventory2">
+        update sms_flash_promotion_product set num = num - #{difference} where id = #{id}
+    </update>
 </mapper>

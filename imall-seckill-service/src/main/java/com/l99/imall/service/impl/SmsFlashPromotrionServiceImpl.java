@@ -4,7 +4,6 @@ package com.l99.imall.service.impl;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.l99.imall.dao.SmsFlashPromotionDao;
 import com.l99.imall.pojo.CommonResult;
-import com.l99.imall.pojo.CreateSmsFlashPromotionOrderRequest;
 import com.l99.imall.pojo.SmsFlashPromotion;
 import com.l99.imall.service.ISmsFlashPromotionService;
 import org.springframework.beans.factory.annotation.Autowired;

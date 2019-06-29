@@ -29,4 +29,10 @@ public interface SmsFlashPromotionProductDao {
      * @return
      */
     boolean updateSmsFlashPromotionProductInventory(@Param("id") Long id, @Param("difference") Integer difference);
+
+    /**
+     * 修改秒杀库存，不判断库存>0
+     * @return
+     */
+    boolean updateSmsFlashPromotionProductInventory2(@Param("id") Long id, @Param("difference") Integer difference);
 }
